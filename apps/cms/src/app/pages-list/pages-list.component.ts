@@ -11,12 +11,13 @@ import { PageEntity } from '@course-angular-cms/data';
 })
 export class PagesListComponent implements OnInit {
 
-  pagesObservable: Observable<PageEntity[]>;
+  pages: PageEntity[] = [];
 
   constructor(private pageService: PageService) { }
 
   ngOnInit(): void {
-    this.pagesObservable = this.pageService.getPages();
+    this.pageService.getPages()
+      .subscribe(pages => this.pages = pages);
   }
 
 }
